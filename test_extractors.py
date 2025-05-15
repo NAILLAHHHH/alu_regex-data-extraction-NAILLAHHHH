@@ -1,4 +1,4 @@
-from extractors import *
+from extractor import *
 
 def demo_test_samples():
     print("=== Email Extraction ===")
