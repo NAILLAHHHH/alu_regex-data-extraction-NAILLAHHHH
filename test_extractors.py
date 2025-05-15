@@ -34,7 +34,21 @@ class TestRegexExtractors(unittest.TestCase):
         text = "14:30 2:30 PM 02:30 pm 7:00AM 7:00 25:00"
         valid, invalid = extract_times(text)
         self.assertEqual(valid, ['14:30', '2:30 PM', '02:30 pm', '7:00AM', '7:00'])
-        self.assertIn("Invalid time format: 25:00", invalid)
+        self.assertIn("Invalid time format: 25:00", invalid)from extractors import *
+
+text = "user@example.com firstname.lastname@company.co.uk wrong@.com user@site"
+valid, invalid = extract_emails(text)
+print("Valid emails:", valid)
+print("Invalid emails:", invalid)
+
+text = "https://www.example.com http://bad_url www.example.com/page wrong_link"
+valid, invalid = extract_urls(text)
+print("Valid URLs:", valid)
+print("Invalid URLs:", invalid)
+
+# Similarly for phone numbers, credit cards, times...
+
+
 
 if __name__ == '__main__':
     unittest.main()
