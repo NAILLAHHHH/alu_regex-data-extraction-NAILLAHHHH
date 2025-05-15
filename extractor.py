@@ -9,7 +9,7 @@ def extract_urls(text):
     return re.findall(pattern, text)
 
 def extract_phone_numbers(text):
-    pattern = r'\b(?:\(\d{3}\)[-. ]?\d{3}[-. ]?\d{4}|\d{3}[-. ]\d{3}[-. ]\d{4})\b'
+    pattern = r'(?:\(\d{3}\)[-. ]?\d{3}[-. ]?\d{4}|\d{3}[-. ]\d{3}[-. ]\d{4})\b'
     return re.findall(pattern, text)
 
 def extract_credit_cards(text):
