@@ -5,7 +5,7 @@ def extract_emails(text):
     return re.findall(pattern, text)
 
 def extract_urls(text):
-    pattern = r'\bhttps?://[^\s<>"]+|www\.[^\s<>"]+\b'
+    pattern =r'\b(?:https?://|www\.)[^\s"<>()]+'
     return re.findall(pattern, text)
 
 def extract_phone_numbers(text):
@@ -17,6 +17,6 @@ def extract_credit_cards(text):
     return re.findall(pattern, text)
 
 def extract_times(text):
-    pattern = r'\b((1[0-2]|0?[1-9]):[0-5]\d\s?[APap][Mm]|(2[0-3]|[01]?\d):[0-5]\d)\b'
+    pattern = r'\b(?:[01]?\d|2[0-3]):[0-5]\d(?:\s?[APap][Mm])?\b'
     return re.findall(pattern, text)
-    
+
