@@ -9,11 +9,16 @@ def extract_emails(text):
     return valid, [f"Invalid email: {e}" for e in invalid]
 
 def extract_urls(text):
-    raw_candidates = re.findall(r'\S+', text)
-    pattern = r'\bhttps?://[^\s<>"']+|www\.[^\s<>"']+\b'
-    valid = re.findall(pattern, text)
-    invalid = [url for url in raw_candidates if ("http" in url or "www." in url) and url not in valid]
-    return valid, [f"Invalid URL: {u}" for u in invalid]
+    pattern = r"\bhttps?://[^\s<>\"']+|www\.[^\s<>\"']+\b"
+    matches = re.findall(pattern, text)
+    valid = []
+    invalid = []
+    for match in matches:
+        if re.match(r'^https?://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', match) or re.match(r'^www\.[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', match):
+            valid.append(match)
+        else:
+            invalid.append(f"Invalid URL: {match}")
+    return valid, invalid
 
 def extract_phone_numbers(text):
     pattern = r'(\(\d{3}\)[-.\s]?\d{3}[-.\s]?\d{4}|\d{3}[-.\s]\d{3}[-.\s]\d{4})\b'
